@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://dfq2iqhuccltx"]
+
+[ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://scenes/player.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bo1faxqcafksn" path="res://scenes/excercise_object.tscn" id="3_lnu2h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fbwmm"]
+distance = -320.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lbhrr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_lnu2h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
+
+[node name="Game" type="Node2D" unique_id=388285828]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=357201908]
+texture_filter = 1
+texture = ExtResource("1_uwrxv")
+
+[node name="Player" parent="." unique_id=661717046 instance=ExtResource("2_yqjtg")]
+position = Vector2(95, 47)
+scale = Vector2(1, 1)
+
+[node name="excerciseObject" parent="." unique_id=1541300546 instance=ExtResource("3_lnu2h")]
+position = Vector2(-28, 30)
+
+[node name="boundariies" type="Node2D" parent="." unique_id=1710777791]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="boundariies" unique_id=213679921]
+
+[node name="DOWNCollisionShape2D3" type="CollisionShape2D" parent="boundariies/StaticBody2D" unique_id=305398995]
+shape = SubResource("WorldBoundaryShape2D_fbwmm")
+
+[node name="UPCollisionShape2D2" type="CollisionShape2D" parent="boundariies/StaticBody2D" unique_id=1882180913]
+position = Vector2(0, -320)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_lbhrr")
+
+[node name="LEFTCollisionShape2D" type="CollisionShape2D" parent="boundariies/StaticBody2D" unique_id=2030828201]
+position = Vector2(-193, 0)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_lnu2h")
+
+[node name="RIGHTCollisionShape2D4" type="CollisionShape2D" parent="boundariies/StaticBody2D" unique_id=2069451177]
+position = Vector2(193, 0)
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_iywne")
