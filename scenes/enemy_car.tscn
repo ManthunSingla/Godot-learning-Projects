@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://chi01j4jyxpb8"]
+
+[ext_resource type="Texture2D" uid="uid://ocjfhrelwysu" path="res://graphics/cars/red.png" id="1_3y6xc"]
+
+[sub_resource type="GDScript" id="GDScript_3y6xc"]
+script/source = "extends Area2D
+
+var direction = Vector2(1,0)
+var speed = 4
+
+func _ready() -> void:
+	if position.x > 0:
+		direction.x = -1
+		$Sprite2D.flip_h = true
+
+func _process(delta: float) -> void:
+	position += direction * speed
+	
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbwmm"]
+size = Vector2(22, 20)
+
+[node name="enemyCar" type="Area2D" unique_id=1648174779]
+script = SubResource("GDScript_3y6xc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=316267817]
+texture = ExtResource("1_3y6xc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2130618737]
+shape = SubResource("RectangleShape2D_fbwmm")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1473736568]
+
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

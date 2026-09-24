@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dfq2iqhuccltx"]
 
+[ext_resource type="Script" uid="uid://4vxvmd16aeo1" path="res://scenes/game.gd" id="1_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bo1faxqcafksn" path="res://scenes/excercise_object.tscn" id="3_lnu2h"]
@@ -14,17 +15,14 @@ distance = -320.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
 
 [node name="Game" type="Node2D" unique_id=388285828]
+script = ExtResource("1_lbhrr")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=357201908]
+[node name="BackGround" type="Sprite2D" parent="." unique_id=357201908]
 texture_filter = 1
 texture = ExtResource("1_uwrxv")
 
-[node name="Player" parent="." unique_id=661717046 instance=ExtResource("2_yqjtg")]
-position = Vector2(95, 47)
-scale = Vector2(1, 1)
-
-[node name="excerciseObject" parent="." unique_id=1541300546 instance=ExtResource("3_lnu2h")]
-position = Vector2(-28, 30)
+[node name="Timer" type="Timer" parent="." unique_id=1100804775]
+autostart = true
 
 [node name="boundariies" type="Node2D" parent="." unique_id=1710777791]
 
@@ -47,3 +45,36 @@ shape = SubResource("WorldBoundaryShape2D_lnu2h")
 position = Vector2(193, 0)
 rotation = 4.712389
 shape = SubResource("WorldBoundaryShape2D_iywne")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1112495290]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=231532784]
+position = Vector2(-11.871894, -5.066986)
+scale = Vector2(0.9429946, 0.98511904)
+polygon = PackedVector2Array(-173.57932, -303.9698, -172.57932, -201.96979, -84.57931, -201.96979, -82.57931, -306.9698)
+
+[node name="Objects" type="Node" parent="." unique_id=852045177]
+
+[node name="tree" parent="Objects" unique_id=1541300546 instance=ExtResource("3_lnu2h")]
+position = Vector2(-28, 30)
+
+[node name="Player" parent="Objects" unique_id=661717046 instance=ExtResource("2_yqjtg")]
+position = Vector2(95, 47)
+scale = Vector2(1, 1)
+
+[node name="CarStartingPoint" type="Node" parent="." unique_id=2106958404]
+
+[node name="Marker2D" type="Marker2D" parent="CarStartingPoint" unique_id=955278624]
+position = Vector2(-201, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="CarStartingPoint" unique_id=1394401136]
+position = Vector2(-205, 116)
+
+[node name="Marker2D3" type="Marker2D" parent="CarStartingPoint" unique_id=2001339713]
+position = Vector2(227, -91)
+
+[node name="Marker2D4" type="Marker2D" parent="CarStartingPoint" unique_id=38607610]
+position = Vector2(216, 148)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
