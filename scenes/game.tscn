@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://doghmovcgeltw" path="res://graphics/map.png" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://dghd7rii024ea" path="res://scenes/player.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bo1faxqcafksn" path="res://scenes/excercise_object.tscn" id="3_lnu2h"]
+[ext_resource type="FontFile" uid="uid://hqpa84d2dqvp" path="res://fonts/Better VCR 9.0.1.ttf" id="5_iywne"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fbwmm"]
 distance = -320.0
@@ -21,12 +22,10 @@ script = ExtResource("1_lbhrr")
 texture_filter = 1
 texture = ExtResource("1_uwrxv")
 
-[node name="Timer" type="Timer" parent="." unique_id=1100804775]
-autostart = true
-
 [node name="boundariies" type="Node2D" parent="." unique_id=1710777791]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="boundariies" unique_id=213679921]
+metadata/_edit_group_ = true
 
 [node name="DOWNCollisionShape2D3" type="CollisionShape2D" parent="boundariies/StaticBody2D" unique_id=305398995]
 shape = SubResource("WorldBoundaryShape2D_fbwmm")
@@ -56,10 +55,10 @@ polygon = PackedVector2Array(-173.57932, -303.9698, -172.57932, -201.96979, -84.
 [node name="Objects" type="Node" parent="." unique_id=852045177]
 
 [node name="tree" parent="Objects" unique_id=1541300546 instance=ExtResource("3_lnu2h")]
-position = Vector2(-28, 30)
+position = Vector2(-23, 42)
 
 [node name="Player" parent="Objects" unique_id=661717046 instance=ExtResource("2_yqjtg")]
-position = Vector2(95, 47)
+position = Vector2(-111, 64)
 scale = Vector2(1, 1)
 
 [node name="CarStartingPoint" type="Node" parent="." unique_id=2106958404]
@@ -71,10 +70,39 @@ position = Vector2(-201, 0)
 position = Vector2(-205, 116)
 
 [node name="Marker2D3" type="Marker2D" parent="CarStartingPoint" unique_id=2001339713]
-position = Vector2(227, -91)
+position = Vector2(206, -98)
 
 [node name="Marker2D4" type="Marker2D" parent="CarStartingPoint" unique_id=38607610]
-position = Vector2(216, 148)
+position = Vector2(202, 155)
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="CanvasGroup" type="CanvasLayer" parent="." unique_id=1678934928]
+
+[node name="Label" type="Label" parent="CanvasGroup" unique_id=1687254389]
+anchors_preset = -1
+anchor_left = 0.518
+anchor_top = 0.01
+anchor_right = 0.518
+anchor_bottom = 0.05
+offset_left = -37.0
+offset_right = 37.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("5_iywne")
+theme_override_font_sizes/font_size = 14
+text = "testing
+score...."
+horizontal_alignment = 1
+
+[node name="Timer Part" type="Node2D" parent="." unique_id=1851840415]
+
+[node name="Timer" type="Timer" parent="Timer Part" unique_id=1100804775]
+wait_time = 0.1
+autostart = true
+
+[node name="score ++" type="Timer" parent="Timer Part" unique_id=1706645887]
+autostart = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer Part/Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer Part/score ++" to="." method="_on_scroe__timeout"]
+[connection signal="timeout" from="Timer Part/score ++" to="." method="_on_score__timeout"]

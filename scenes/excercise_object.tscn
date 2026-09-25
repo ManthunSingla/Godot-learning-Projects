@@ -8,6 +8,8 @@
 size = Vector2(28, 42)
 
 [node name="excerciseObject" type="StaticBody2D" unique_id=1603434255]
+collision_layer = 4
+collision_mask = 2
 metadata/_edit_group_ = true
 
 [node name="Tree1" type="Sprite2D" parent="." unique_id=154554477]

@@ -6,15 +6,21 @@
 script/source = "extends Area2D
 
 var direction = Vector2(1,0)
-var speed = 4
+var speed = 150
+var colours = [
+	preload(\"res://graphics/cars/green.png\"),
+	preload(\"res://graphics/cars/red.png\") ,
+	preload(\"res://graphics/cars/yellow.png\")
+	]
 
 func _ready() -> void:
 	if position.x > 0:
 		direction.x = -1
 		$Sprite2D.flip_h = true
+	$Sprite2D.texture = colours.pick_random()
 
 func _process(delta: float) -> void:
-	position += direction * speed
+	position += direction * speed * delta
 	
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
@@ -24,6 +30,8 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 size = Vector2(22, 20)
 
 [node name="enemyCar" type="Area2D" unique_id=1648174779]
+collision_layer = 8
+collision_mask = 2
 script = SubResource("GDScript_3y6xc")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=316267817]

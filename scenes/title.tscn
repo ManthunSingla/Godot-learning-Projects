@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://bg46h5x2n6eev"]
+
+[ext_resource type="FontFile" uid="uid://dr201ov4c76pb" path="res://fonts/Crackman.otf" id="1_4ignj"]
+
+[node name="title" type="Control" unique_id=1660194060]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1389164518]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03848754, 6.7984683e-06, 0.21729523, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1267500642]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.102
+anchor_right = 0.5
+anchor_bottom = 0.102
+offset_left = -577.5
+offset_right = 577.5
+offset_bottom = 329.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_4ignj")
+theme_override_font_sizes/font_size = 135
+text = "Car Game
+To learn godot"
+horizontal_alignment = 1
+vertical_alignment = 1
