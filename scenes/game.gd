@@ -12,11 +12,19 @@ func _on_timer_timeout() -> void:
 	car1.connect("body_entered", killed)
 	
 func killed(body):
-	print(body)
+	#print(body)
 	print('You Killed')
+	StartingScore.score = score
+	call_deferred("changeScreen")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	print("Killed")
+	StartingScore.score = score
+	call_deferred("changeScreen")
+
+
+func changeScreen():
+	get_tree().change_scene_to_file("res://scenes/title.tscn")
 
 func _on_score__timeout() -> void:
 	score += 1
